@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detection System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="auth-background" aria-hidden="true">
+    <video class="auth-video" autoplay muted loop poster="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1600&q=70">
+        <source src="https://storage.coverr.co/videos/coverr-abstract-digital-technology-4265/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="auth-marquee">
+        <span>ALERT: PHISHING CAMPAIGN DETECTED</span>
+        <span>ACTIVE THREAT INTELLIGENCE FEED</span>
+        <span>SECURE ACCESS REQUIRED</span>
+        <span>PHISHING GUARD VERIFIED SESSION</span>
+    </div>
+    <div class="float-image float-1">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1600&q=70" alt="Phishing attack simulation visuals" loading="lazy">
+    </div>
+    <div class="float-image float-2">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=70" alt="Cyber defense command center" loading="lazy">
+    </div>
+    <div class="float-image float-3">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=70" alt="Network intrusion telemetry" loading="lazy">
+    </div>
+    <div class="float-image float-4">
+        <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1600&q=70" alt="Threat intelligence grid" loading="lazy">
+    </div>
+    <div class="float-image float-5">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=70" alt="Incident response operations" loading="lazy">
+    </div>
+</div>
+
+<!-- AUTHENTICATION -->
+<section class="auth-shell" id="authShell">
+    <div class="auth-panel">
+        <div class="auth-brand">
+            <span class="auth-badge">
+                <span class="auth-shield" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img" focusable="false">
+                        <path d="M12 2l7 3v6c0 5.25-3.5 9.75-7 11-3.5-1.25-7-5.75-7-11V5l7-3z" fill="currentColor"></path>
+                    </svg>
+                </span>
+                Phishing Guard
+            </span>
+            <h1>Secure Access Portal</h1>
+            <p>Brief: An AI-driven system that checks URLs in real time to prevent phishing attacks.</p>
+        </div>
+
+        <div class="auth-toggle" aria-label="Authentication">
+            <button class="auth-tab active" data-auth="login" type="button">Login</button>
+            <button class="auth-tab" data-auth="register" type="button">Register</button>
+        </div>
+
+        <div class="auth-forms">
+            <form id="loginForm" class="auth-form active" autocomplete="on">
+                <div class="form-field">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="name@company.com" autocomplete="username">
+                </div>
+                <div class="form-field">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required minlength="8" placeholder="Enter your password" autocomplete="current-password">
+                </div>
+                <p class="form-error" id="loginError" aria-live="polite"></p>
+                <button type="submit" class="auth-submit">Sign In</button>
+                <button type="button" class="guest-button" id="guestModeButton">Continue as Guest</button>
+            </form>
+
+            <form id="registerForm" class="auth-form" autocomplete="on">
+                <div class="form-split">
+                    <div class="form-field">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" required placeholder="Avery" autocomplete="given-name">
+                    </div>
+                    <div class="form-field">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" required placeholder="Morgan" autocomplete="family-name">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required placeholder="name@company.com" autocomplete="email">
+                </div>
+                <div class="form-field">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required minlength="8" placeholder="Create a strong password" autocomplete="new-password">
+                </div>
+                <p class="form-help">Minimum 8 characters with a mix of letters, numbers, and symbols.</p>
+                <p class="form-error" id="registerError" aria-live="polite"></p>
+                <button type="submit" class="auth-submit">Create Account</button>
+                <button type="button" class="guest-button" id="guestModeButtonRegister">Continue as Guest</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo"> Phishing Guard</div>
+    <ul>
+        <li><a href="#" id="navHomeLink">Home</a></li>
+        <li><a href="#" id="navAboutLink">About</a></li>
+        <li><a href="#" id="navProfileLink">Profile</a></li>
+    </ul>
+    <div class="nav-actions">
+        <div class="token-pill" aria-live="polite">Tokens: <span id="tokenBalance">0</span></div>
+        <div class="profile-menu">
+            <button class="profile-button" id="profileButton" type="button" aria-expanded="false">Profile ▾</button>
+            <div class="profile-dropdown" id="profileDropdown" aria-label="Profile menu">
+                <div class="profile-header">
+                    <span id="profileName">User</span>
+                    <span id="profileEmail">user@example.com</span>
+                </div>
+                <div class="profile-row">Remaining Tokens: <strong id="tokenBalanceDetail">0</strong></div>
+                <button class="logout-button" id="logoutButton" type="button">Logout</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- TAB NAVIGATION -->
+<div class="tab-navigation">
+    <button class="tab-btn active" data-tab="project" onclick="switchTab('project', this)">ℹ️ About Project</button>
+    <button class="tab-btn" data-tab="stats" onclick="switchTab('stats', this)">📊 Statistics & Records</button>
+    <button class="tab-btn" data-tab="detection" onclick="switchTab('detection', this)">🔍 Real-Time Detection</button>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero" id="heroSection">
+    <div class="hero-text">
+        <h1>Real-Time Phishing Detection System</h1>
+        <p>Analyze suspicious URLs instantly using intelligent security checks.</p>
+    </div>
+
+    <div class="hero-cards">
+        <div class="card active">🔐 Secure Browsing</div>
+        <div class="card">⚠️ Detect Fake URLs</div>
+        <div class="card">📊 Confidence Scoring</div>
+    </div>
+</section>
+
+
+<!-- PROJECT DESCRIPTION PAGE -->
+<section class="project-container" id="projectPage" style="display: none;">
+    <div class="project-content">
+        <h2>About Phishing Guard</h2>
+        
+        <div class="project-intro">
+            <p><strong>Phishing Guard</strong> is an advanced real-time URL analysis and phishing detection system designed to protect users from malicious websites and cyber threats. Using machine learning algorithms and intelligent pattern recognition, our system analyzes URLs instantly and provides comprehensive security assessments.</p>
+        </div>
+
+        <div class="project-section">
+            <h3>🎯 What We Do</h3>
+            <p>Phishing Guard continuously monitors and analyzes URLs to identify phishing attempts, credential theft sites, and other malicious web resources. Our intelligent detection engine examines multiple security indicators in real-time to provide instant verification of website legitimacy.</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h4>Instant Detection</h4>
+                <p>Analyze URLs in milliseconds using advanced machine learning algorithms and real-time threat intelligence databases.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🔒</div>
+                <h4>Enhanced Security</h4>
+                <p>Detect sophisticated phishing attempts, URL spoofing, credential harvesting, and zero-day threats before they compromise your data.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">📊</div>
+                <h4>Real-Time Analytics</h4>
+                <p>Monitor detection statistics and threat patterns in real-time to understand emerging security threats and risks.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">✅</div>
+                <h4>High Accuracy</h4>
+                <p>Industry-leading precision and recall metrics ensure minimal false positives while catching genuine threats effectively.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h4>Comprehensive Analysis</h4>
+                <p>Examines URL structure, SSL certificates, domain reputation, DNS records, and behavioral indicators for thorough assessment.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">📈</div>
+                <h4>Detailed Reporting</h4>
+                <p>Access comprehensive performance metrics, accuracy statistics, and threat analysis records with historical tracking.</p>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h3>📧 Report an Issue</h3>
+            <p class="contact-subtitle">Found a problem or have a complaint? Let us know and we'll get back to you promptly.</p>
+            <form class="contact-form" id="contactForm" onsubmit="return handleContactSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactName">👤 Your Name</label>
+                        <input type="text" id="contactName" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">✉️ Email Address</label>
+                        <input type="email" id="contactEmail" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contactSubject">📝 Subject</label>
+                    <input type="text" id="contactSubject" name="subject" placeholder="Brief description of your issue" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">💬 Message / Complaint</label>
+                    <textarea id="contactMessage" name="message" rows="5" placeholder="Please describe your issue or complaint in detail..." required></textarea>
+                </div>
+                <button type="submit" class="contact-submit-btn">🚀 Submit Report</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN CONTENT (DETECTION PAGE) -->
+<section class="detection-page" id="detectionPage" style="display: none;">
+
+    <!-- TOP ROW: Input + Verdict -->
+    <div class="detect-top">
+
+        <!-- URL INPUT BOX -->
+        <div class="input-box detect-input-box">
+            <h2>🔍 Real-Time URL Analysis</h2>
+            <p class="model-info-label">
+                AI Ensemble: Random Forest (Unit 1) + Naive Bayes (Unit 4) + Gradient Boost (Unit 1) + Decision Tree (Unit 2/3)
+            </p>
+            <div class="url-row">
+                <input type="text" id="urlInput" placeholder="Paste or type the full URL here (e.g., https://example.com/page)" autocomplete="off" onkeydown="if(event.key==='Enter') analyzeURL()">
+                <button onclick="analyzeURL()" id="analyzeBtn">🔍 Analyse URL</button>
+            </div>
+            <div class="model-badges-row">
+                <span class="mbadge rf">🌲 RF</span>
+                <span class="mbadge nb">🎲 NB</span>
+                <span class="mbadge gb">📈 GB</span>
+                <span class="mbadge dt">🌿 DT</span>
+                <span class="mbadge en">🤖 Ensemble</span>
+            </div>
+        </div>
+
+        <!-- VERDICT / RESULT CARD -->
+        <div class="result-card detect-result-card" id="resultCard">
+            <div class="verdict-label" id="resultText">Waiting for analysis…</div>
+
+            <div class="verdict-probability">
+                <div class="prob-row">
+                    <span>Phishing Probability</span>
+                    <span id="probabilityValue" class="prob-number">–</span>
+                </div>
+                <div class="bar"><div id="confidenceBar"></div></div>
+            </div>
+
+            <div class="verdict-meta" id="verdictMeta" style="display:none">
+                <span class="meta-chip mc-model"  id="modelChip">🤖 Ensemble</span>
+                <span class="meta-chip mc-bayes"  id="bayesChip">🎲 Bayes: –</span>
+                <span class="meta-chip mc-rules"  id="rulesChipMini">📋 Rules: –</span>
+                <span class="meta-chip mc-csp"    id="cspChipMini">🔒 CSP: –</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM ROW: Feature Analysis + AI Reasoning Tabs -->
+    <div class="detect-bottom">
+
+        <!-- LEFT: NLP / URL Feature Panel -->
+        <div class="feature-panel">
+            <h3>🔬 URL Feature Analysis</h3>
+            <div class="feature-grid" id="featureGrid">
+                <div class="feature-placeholder">Analyse a URL above to see its extracted features.</div>
+            </div>
+            <div class="feature-flags-section" id="featureFlagsSection" style="display:none">
+                <h4>⚑ Detected Signals</h4>
+                <ul id="featureList" class="feature-flags-list"></ul>
+            </div>
+        </div>
+
+        <!-- RIGHT: AI Reasoning Tabs -->
+        <div class="reasoning-panel">
+
+            <div class="reasoning-tabs">
+                <button class="r-tab active" onclick="switchReasoningTab('rules', this)">📋 Expert Rules</button>
+                <button class="r-tab" onclick="switchReasoningTab('csp', this)">🔒 CSP</button>
+                <button class="r-tab" onclick="switchReasoningTab('graph', this)">🕸 Graph Search</button>
+                <button class="r-tab" onclick="switchReasoningTab('explain', this)">💬 Why?</button>
+            </div>
+
+            <!-- Expert Rules tab (Forward Chaining – Unit 2) -->
+            <div class="r-content active" id="rtab-rules">
+                <div class="reasoning-empty" id="rulesEmpty">
+                    Run analysis to see forward-chaining Expert System rules (Unit 2 – Logical Agents).
+                </div>
+                <div id="rulesBody" style="display:none">
+                    <div class="rules-summary">
+                        <span id="rulesFiredLabel">0 / 19 rules fired</span>
+                        <div class="risk-bar-wrap"><div class="risk-bar" id="riskBar"></div></div>
+                        <span id="riskLabel">Risk: 0%</span>
+                    </div>
+                    <ul class="rules-list" id="rulesList"></ul>
+                </div>
+            </div>
+
+            <!-- CSP tab (Unit 3 – Constraint Satisfaction Problem) -->
+            <div class="r-content" id="rtab-csp">
+                <div class="reasoning-empty" id="cspEmpty">
+                    Run analysis to see CSP constraint violations (Unit 3 – Knowledge Representation).
+                </div>
+                <div id="cspBody" style="display:none">
+                    <div class="csp-summary">
+                        <span id="cspViolLabel">– violations</span>
+                        <div class="sat-bar-wrap"><div class="sat-bar" id="satBar"></div></div>
+                        <span id="satLabel">Satisfaction: –%</span>
+                    </div>
+                    <ul class="csp-list" id="cspList"></ul>
+                </div>
+            </div>
+
+            <!-- Graph Search tab (Unit 1 – BFS / DFS / A*) -->
+            <div class="r-content" id="rtab-graph">
+                <div class="reasoning-empty" id="graphEmpty">
+                    Run analysis to see BFS / DFS / A* search over the URL component graph (Unit 1 – Search).
+                </div>
+                <div id="graphBody" style="display:none">
+                    <div class="graph-meta" id="graphMeta"></div>
+                    <div class="graph-searches" id="graphSearches"></div>
+                </div>
+            </div>
+
+            <!-- Explanations tab (Backward Chaining – Unit 2; Expert System – Unit 5) -->
+            <div class="r-content" id="rtab-explain">
+                <div class="reasoning-empty" id="explainEmpty">
+                    Run analysis to see the backward-chain explanation (Unit 2 / Unit 5 – Expert System).
+                </div>
+                <div id="explainBody" style="display:none">
+                    <p class="explain-subtitle">
+                        Backward-chaining proof: each fired rule that supports the phishing conclusion.
+                    </p>
+                    <ul class="explain-list" id="explainList"></ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<!-- STATISTICS PAGE -->
+<section class="stats-container" id="statsPage" style="display: none;">
+    <h2>Real-Time Detection Statistics & Records</h2>
+    
+    <div class="stats-grid">
+        <!-- Overall Metrics -->
+        <div class="stat-card total">
+            <div class="stat-icon">📈</div>
+            <div class="stat-content">
+                <p class="stat-label">Total URLs Analyzed</p>
+                <p class="stat-value" id="totalAnalyzed">0</p>
+            </div>
+        </div>
+
+        <!-- Legitimate Sites -->
+        <div class="stat-card legitimate">
+            <div class="stat-icon">✅</div>
+            <div class="stat-content">
+                <p class="stat-label">Legitimate Websites</p>
+                <p class="stat-value" id="legitimateCount">0</p>
+                <p class="stat-percentage" id="legitimatePercent">0%</p>
+            </div>
+        </div>
+
+        <!-- Phishing Detected -->
+        <div class="stat-card phishing">
+            <div class="stat-icon">⚠️</div>
+            <div class="stat-content">
+                <p class="stat-label">Phishing Websites Detected</p>
+                <p class="stat-value" id="phishingCount">0</p>
+                <p class="stat-percentage" id="phishingPercent">0%</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Metrics -->
+    <div class="metrics-section">
+        <h3>Performance Metrics</h3>
+        <div class="metrics-grid">
+            <!-- True Positives -->
+            <div class="metric-box">
+                <p class="metric-label">True Positives (TP)</p>
+                <p class="metric-value" id="truePositives">0</p>
+                <p class="metric-desc">Correctly identified phishing</p>
+            </div>
+
+            <!-- True Negatives -->
+            <div class="metric-box">
+                <p class="metric-label">True Negatives (TN)</p>
+                <p class="metric-value" id="trueNegatives">0</p>
+                <p class="metric-desc">Correctly identified legitimate</p>
+            </div>
+
+            <!-- False Positives -->
+            <div class="metric-box warning">
+                <p class="metric-label">False Positives (FP)</p>
+                <p class="metric-value" id="falsePositives">0</p>
+                <p class="metric-desc">Legitimate marked as phishing</p>
+            </div>
+
+            <!-- False Negatives -->
+            <div class="metric-box warning">
+                <p class="metric-label">False Negatives (FN)</p>
+                <p class="metric-value" id="falseNegatives">0</p>
+                <p class="metric-desc">Phishing marked as legitimate</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accuracy Metrics -->
+    <div class="accuracy-section">
+        <h3>Detection Accuracy Metrics</h3>
+        <div class="accuracy-grid">
+            <!-- Precision -->
+            <div class="accuracy-box">
+                <p class="accuracy-label">Precision</p>
+                <div class="progress-ring">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress-fill" cx="50" cy="50" r="45" style="stroke-dasharray: 0 282.6;"></circle>
+                    </svg>
+                    <p class="accuracy-value" id="precision">0%</p>
+                </div>
+                <p class="accuracy-desc">TP / (TP + FP)</p>
+            </div>
+
+            <!-- Recall (Sensitivity) -->
+            <div class="accuracy-box">
+                <p class="accuracy-label">Recall (Sensitivity)</p>
+                <div class="progress-ring">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress-fill" cx="50" cy="50" r="45" style="stroke-dasharray: 0 282.6;"></circle>
+                    </svg>
+                    <p class="accuracy-value" id="recall">0%</p>
+                </div>
+                <p class="accuracy-desc">TP / (TP + FN)</p>
+            </div>
+
+            <!-- Specificity -->
+            <div class="accuracy-box">
+                <p class="accuracy-label">Specificity</p>
+                <div class="progress-ring">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress-fill" cx="50" cy="50" r="45" style="stroke-dasharray: 0 282.6;"></circle>
+                    </svg>
+                    <p class="accuracy-value" id="specificity">0%</p>
+                </div>
+                <p class="accuracy-desc">TN / (TN + FP)</p>
+            </div>
+
+            <!-- F1 Score -->
+            <div class="accuracy-box">
+                <p class="accuracy-label">F1 Score</p>
+                <div class="progress-ring">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress-fill" cx="50" cy="50" r="45" style="stroke-dasharray: 0 282.6;"></circle>
+                    </svg>
+                    <p class="accuracy-value" id="f1Score">0%</p>
+                </div>
+                <p class="accuracy-desc">Harmonic Mean</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detection Records -->
+    <div class="records-section">
+        <h3>📋 Detection History</h3>
+        <div class="records-controls">
+            <input type="text" id="searchRecords" placeholder="Search by URL..." class="search-box">
+            <select id="filterRecords" class="filter-box" onchange="filterRecords()">
+                <option value="all">All Records</option>
+                <option value="phishing">Phishing Only</option>
+                <option value="legitimate">Legitimate Only</option>
+            </select>
+        </div>
+        <div class="records-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>URL Analyzed</th>
+                        <th>Classification</th>
+                        <th>Confidence</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="recordsBody">
+                    <tr class="empty-row">
+                        <td colspan="5">No records yet. Start analyzing URLs to populate records.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Live Update Notice -->
+    <div class="update-notice">
+        <span class="pulse"></span>
+        <p>Statistics update in real-time based on detected URLs</p>
+    </div>
+
+</section>
+
+<!-- TIPS -->
+<section class="tips">
+    <h2>Safety Tips</h2>
+    <p>✔ Avoid clicking unknown links</p>
+    <p>✔ Check HTTPS and domain spelling</p>
+    <p>✔ Never share OTPs or passwords</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Phishing Guard 
+          for more details mail us at:example@gmail.com
+    </p>
+</footer>
+
+<div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

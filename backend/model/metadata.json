@@ -1,0 +1,141 @@
+{
+  "feature_names": [
+    "url_length",
+    "hostname_length",
+    "has_ip",
+    "dot_count",
+    "hyphen_count",
+    "at_count",
+    "question_count",
+    "and_count",
+    "equal_count",
+    "underscore_count",
+    "percent_count",
+    "slash_count",
+    "digit_count",
+    "digit_ratio_url",
+    "has_https",
+    "has_http_in_path",
+    "has_double_slash",
+    "tld_in_path",
+    "subdomain_count",
+    "contains_punycode",
+    "has_port",
+    "suspicious_words",
+    "shortening_service",
+    "entropy",
+    "vowel_ratio",
+    "avg_token_length",
+    "bigram_anomaly",
+    "has_suspicious_tld",
+    "brand_impersonation"
+  ],
+  "feature_count": 29,
+  "models_trained": [
+    "phishing_model_rf.joblib       (Random Forest \u2014 Unit 1 Search)",
+    "phishing_model_nb.joblib       (Naive Bayes   \u2014 Unit 4 Probabilistic)",
+    "phishing_model_gb.joblib       (Gradient Boost\u2014 Unit 1 Greedy Search)",
+    "phishing_model_dt.joblib       (Decision Tree \u2014 Unit 2/3 Logical/CSP)",
+    "phishing_model_ensemble.joblib (Soft-Vote Ensemble \u2014 Unit 5 Expert Sys)"
+  ],
+  "primary_model": "phishing_model_ensemble.joblib",
+  "metrics": {
+    "rf": {
+      "accuracy": 0.88364,
+      "precision": 0.890472,
+      "recall": 0.874891,
+      "f1": 0.882613
+    },
+    "nb": {
+      "accuracy": 0.695976,
+      "precision": 0.949799,
+      "recall": 0.413823,
+      "f1": 0.576478
+    },
+    "gb": {
+      "accuracy": 0.87839,
+      "precision": 0.891403,
+      "recall": 0.861767,
+      "f1": 0.876335
+    },
+    "dt": {
+      "accuracy": 0.82021,
+      "precision": 0.846591,
+      "recall": 0.782152,
+      "f1": 0.813097
+    },
+    "ensemble": {
+      "accuracy": 0.861767,
+      "precision": 0.933893,
+      "recall": 0.778653,
+      "f1": 0.849237
+    }
+  },
+  "feature_importances": {
+    "bigram_anomaly": 0.133155,
+    "entropy": 0.097893,
+    "hostname_length": 0.080662,
+    "avg_token_length": 0.077821,
+    "url_length": 0.074343,
+    "vowel_ratio": 0.065872,
+    "digit_ratio_url": 0.064831,
+    "slash_count": 0.057991,
+    "digit_count": 0.057903,
+    "hyphen_count": 0.055121,
+    "suspicious_words": 0.052542,
+    "subdomain_count": 0.051873,
+    "dot_count": 0.040642,
+    "has_https": 0.016248,
+    "underscore_count": 0.01609,
+    "question_count": 0.015859,
+    "equal_count": 0.010875,
+    "brand_impersonation": 0.009589,
+    "percent_count": 0.004554,
+    "tld_in_path": 0.003224,
+    "at_count": 0.003147,
+    "has_suspicious_tld": 0.002607,
+    "and_count": 0.002434,
+    "has_ip": 0.001636,
+    "has_port": 0.00117,
+    "has_http_in_path": 0.000838,
+    "shortening_service": 0.000466,
+    "has_double_slash": 0.00039,
+    "contains_punycode": 0.000225
+  },
+  "ai_concepts": {
+    "Unit1_Intelligent_Agents": [
+      "PEAS framework (PhishingDetectionAgent in ai_agent.py)",
+      "Random Forest as stochastic DFS tree search ensemble",
+      "Gradient Boosting as greedy best-first descent in function space"
+    ],
+    "Unit1_Search_Strategies": [
+      "BFS / DFS / UCS over URLComponentGraph",
+      "Greedy Best-First search with suspicion heuristic",
+      "A* search with g(n)+h(n) on URL graph nodes"
+    ],
+    "Unit2_Logical_Agents": [
+      "Forward Chaining rule engine (PHISHING_RULES knowledge base)",
+      "Backward Chaining explainer (explanation facility)",
+      "Horn clause / FOL representation of URL predicates",
+      "Decision Tree encodes propositional IF-THEN rules"
+    ],
+    "Unit3_CSP_Knowledge": [
+      "UrlConstraintSatisfaction: Variables, Domains, Constraints",
+      "15 URL legitimacy constraints as arc-consistency checks",
+      "PhishingKnowledgeBase: working memory + long-term rule store"
+    ],
+    "Unit4_Probabilistic": [
+      "GaussianNB as Bayesian Network classifier",
+      "BayesianURLReasoner: CPTs + log-space Bayes inference",
+      "Shannon entropy feature (information theory)",
+      "Bigram anomaly: HMM-inspired character transition scoring"
+    ],
+    "Unit5_NLP_ExpertSystems": [
+      "NLP features: entropy, vowel ratio, avg token length, bigrams",
+      "Brand impersonation detection (NLP pattern matching)",
+      "Suspicious TLD knowledge base",
+      "VotingClassifier as Expert System meta-reasoner",
+      "BackwardChainExplainer as Expert System explanation facility"
+    ]
+  }
+}
